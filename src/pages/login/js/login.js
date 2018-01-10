@@ -1,0 +1,1 @@
+(() => console.log('welcome 登录页'))()
