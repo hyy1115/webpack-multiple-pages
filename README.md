@@ -16,10 +16,23 @@ npm install
 
 启动项目之后，会自动打开浏览器，你可以在首页和登录页面切换，你可以尽情使用es6+的语法进行开发。
 
-实现了（css | less）热更新、js热更新，但是html热更新暂未实现，如果你有好的方案，可以分享出来。
 
 ```npm
 npm run dev
+```
+
+实现了（css | less）热更新、js热更新
+
+html不支持热更新，但可以通过一段hack代码支持刷新
+
+```javascript
+if (process.env.NODE_ENV !== 'production') {
+    require('file-loader!../index.html') //这是针对首页的hack
+}
+
+if (process.env.NODE_ENV !== 'production') {
+    require('file-loader!../login.html') //这是针对登录页的hack
+}
 ```
 
 #### 打包发布
