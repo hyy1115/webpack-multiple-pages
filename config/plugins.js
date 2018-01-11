@@ -28,12 +28,17 @@ const pages = [
     }
   }
 ]
-let plugins = []
+let plugins = [
+    new webpack.DefinePlugin({
+        'runtime_env': JSON.stringify(process.env.NODE_ENV)
+    })
+]
 pages.forEach(function (v) {
   plugins.push(new HtmlWebpackPlugin(v))
 })
 if (process.env.NODE_ENV === 'production') {
-  plugins.push(new UglifyJSPlugin(),
+  plugins.push(
+      new UglifyJSPlugin(),
       new ExtractTextPlugin('css/[name].css'))
 } else {
   plugins.push(new webpack.HotModuleReplacementPlugin())
